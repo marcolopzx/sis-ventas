@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Users, Package, Tag, ShoppingCart, ArrowUpRight } from "lucide-react";
 import {
   clienteAPI,
@@ -42,6 +43,7 @@ const StatCard = ({
 );
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   const [stats, setStats] = useState({
     clientes: 0,
     productos: 0,
@@ -103,6 +105,22 @@ const Dashboard = () => {
     },
   ];
 
+  const handleQuickAction = (action: string) => {
+    switch (action) {
+      case "cliente":
+        navigate("/clientes");
+        break;
+      case "producto":
+        navigate("/productos");
+        break;
+      case "venta":
+        navigate("/ventas");
+        break;
+      default:
+        break;
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -127,15 +145,24 @@ const Dashboard = () => {
             Acciones Rápidas
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <button className="flex items-center justify-center space-x-2 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-200">
+            <button
+              onClick={() => handleQuickAction("cliente")}
+              className="flex items-center justify-center space-x-2 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-200 cursor-pointer"
+            >
               <Users className="w-5 h-5 text-blue-500" />
               <span className="text-gray-700">Agregar Cliente</span>
             </button>
-            <button className="flex items-center justify-center space-x-2 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-200">
+            <button
+              onClick={() => handleQuickAction("producto")}
+              className="flex items-center justify-center space-x-2 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-200 cursor-pointer"
+            >
               <Package className="w-5 h-5 text-green-500" />
               <span className="text-gray-700">Agregar Producto</span>
             </button>
-            <button className="flex items-center justify-center space-x-2 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-200">
+            <button
+              onClick={() => handleQuickAction("venta")}
+              className="flex items-center justify-center space-x-2 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-200 cursor-pointer"
+            >
               <ShoppingCart className="w-5 h-5 text-orange-500" />
               <span className="text-gray-700">Nueva Venta</span>
             </button>
