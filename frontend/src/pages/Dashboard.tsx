@@ -1,14 +1,5 @@
 import { useState, useEffect } from "react";
-import {
-  Users,
-  Package,
-  Tag,
-  ShoppingCart,
-  TrendingUp,
-  DollarSign,
-  Activity,
-  ArrowUpRight,
-} from "lucide-react";
+import { Users, Package, Tag, ShoppingCart, ArrowUpRight } from "lucide-react";
 import {
   clienteAPI,
   productoAPI,
